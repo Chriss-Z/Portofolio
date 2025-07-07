@@ -20,13 +20,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: List files (debug)
-        run: ls -R
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: .
+          path: . # atau sesuaikan dengan lokasi file HTML kamu
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
