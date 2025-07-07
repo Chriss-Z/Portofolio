@@ -13,21 +13,22 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
 
     steps:
-      - name: Checkout source
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Setup Node.js (if using npm-based project, else skip this)
+        uses: actions/setup-node@v4
         with:
-          name: github-pages
-          path: .
+          node-version: "20"
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      # Optional: Build command, kalau kamu pakai npm atau build tool lain
+      # - name: Build project
+      #   run: npm install && npm run build
+
+      - name: Upload to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: . # Ganti ini jika file HTML kamu ada di folder lain, misal `dist/` atau `build/`
