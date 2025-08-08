@@ -1,0 +1,28 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Clone from GitHub') {
+      steps {
+        git url: 'git@github.com:Chriss-Z/Portofolio.git', branch: 'main'
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        sh 'docker build -t portofolio-image .'
+      }
+    }
+
+    stage('Run Docker Container') {
+      steps {
+        sh '''
+          docker stop portofolio-container || true
+          docker rm portofolio-container || true
+          docker run -d --name portofolio-container -p 81:80 portofolio-image
+        '''
+      }
+    }
+  }
+}
+
