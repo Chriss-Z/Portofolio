@@ -17,9 +17,9 @@ pipeline {
     stage('Run Docker Container') {
       steps {
         sh '''
-          docker stop portofolio-container || true
-          docker rm portofolio-container || true
-          docker run -d --name portofolio-container -p 81:80 portofolio-image
+          docker stop portfolio-app || true
+          docker rm portfolio-app || true
+          docker run -d --name portfolio-app -p 8081:80 portofolio-image
         '''
       }
     }
