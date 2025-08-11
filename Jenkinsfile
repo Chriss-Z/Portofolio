@@ -4,7 +4,9 @@ pipeline {
   stages {
     stage('Clone from GitHub') {
       steps {
-        git url: 'git@github.com:Chriss-Z/Portofolio.git', branch: 'main'
+        git branch: 'main',
+            url: 'https://github.com/Chriss-Z/Portofolio.git',
+            credentialsId: 'github-https' // ini ID credential yg kamu buat di Jenkins
       }
     }
 
