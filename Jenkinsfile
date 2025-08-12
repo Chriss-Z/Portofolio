@@ -10,10 +10,7 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                // Stop & remove container sebelumnya
                 sh 'docker-compose down || true'
-
-                // Build ulang image & jalankan container
                 sh 'docker-compose up -d --build --no-cache'
             }
         }
@@ -27,3 +24,5 @@ pipeline {
             echo 'Build atau deploy gagal. Cek logs di Jenkins.'
         }
     }
+}
+
