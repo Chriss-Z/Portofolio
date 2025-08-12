@@ -16,8 +16,8 @@ pipeline {
 
     stage('Deploy with Docker Compose') {
       steps {
-        sh 'docker-compose down || true'  // stop container lama
-        sh 'docker-compose up -d'         // jalankan container baru
+        sh 'docker-compose down || true'
+        sh 'docker-compose up -d --build'
       }
     }
   }
